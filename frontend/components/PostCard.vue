@@ -2,14 +2,14 @@
   <div>
     <v-row no-gutters>
       <v-col class="mt-2">
-        <v-card hover class="px-6" height="200px" @click.native="openIssue">
-          <v-card-title>{{ issue.title }}</v-card-title>
+        <v-card hover class="px-6" height="200px" @click.native="openPost">
+          <v-card-title>{{ post.title }}</v-card-title>
           <v-divider class="mx-3"></v-divider>
           <v-row>
             <v-col cols="8" class="py-0">
-              <v-card-subtitle>{{ shortenedIssueText }}</v-card-subtitle>
+              <v-card-subtitle>{{ shortenedPostText }}</v-card-subtitle>
               <v-chip-group class="ml-2" multiple>
-                <v-chip v-for="tag in issue.tags" :key="tag" dense small pill>
+                <v-chip v-for="tag in post.tags" :key="tag" dense small pill>
                   {{ tag }}
                 </v-chip>
               </v-chip-group>
@@ -33,7 +33,7 @@ export default {
     AuthorInfo,
   },
   props: {
-    issue: {
+    post: {
       type: Object,
       required: true,
     },
@@ -46,16 +46,16 @@ export default {
     };
   },
   computed: {
-    shortenedIssueText() {
-      const desc = this.issue.description;
+    shortenedPostText() {
+      const desc = this.post.description;
       return desc.length > this.maxTextChars
         ? `${desc.substring(0, this.maxTextChars)}...`
         : desc;
     },
   },
   methods: {
-    openIssue() {
-      this.$router.push('/issues/' + this.issue.id);
+    openPosts() {
+      this.$router.push('/posts/' + this.post.id);
     },
   },
 };

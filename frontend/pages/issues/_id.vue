@@ -1,3 +1,3 @@
 <template>
-  <div>Issue #{{ $route.params.id }}</div>
+  <div>Post #{{ $route.params.id }}</div>
 </template>

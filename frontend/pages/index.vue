@@ -2,16 +2,17 @@
   <div class="pa-10">
     <v-row no-gutters align="center" class="px-3 mb-2">
       <v-col cols="7">
-        <h1>All issues</h1>
-        <span>{{ issues.length }} issues total</span>
+        <h1>All posts</h1>
+        <span>{{ posts.length }} posts total</span>
       </v-col>
       <v-spacer></v-spacer>
       <v-switch
         v-model="ascending"
         flat
+        inset
         dense
+        :prepend-icon="`mdi-sort-${!ascending ? 'ascending' : 'descending'}`"
         class="mx-5 px-0"
-        style="transform: rotate(270deg) translateX(10px)"
       ></v-switch>
       <v-col>
         <v-btn-toggle v-model="sortBy" background-color="#E8E8E8">
@@ -32,12 +33,12 @@
       </v-col>
     </v-row>
     <v-divider class="mb-5"></v-divider>
-    <issue-card
-      v-for="issue in issues"
-      :key="issue.title"
-      :issue="issue"
+    <post-card
+      v-for="post in posts"
+      :key="post.title"
+      :post="post"
       class="mb-5"
-    ></issue-card>
+    ></post-card>
     <v-hover v-slot="{ hover }">
       <v-btn
         to="/create-post"
@@ -59,16 +60,16 @@
 </template>
 
 <script>
-import IssueCard from '@/components/IssueCard.vue';
+import PostCard from '@/components/PostCard.vue';
 
 export default {
   title: 'Home',
   components: {
-    IssueCard,
+    PostCard,
   },
   data() {
     return {
-      issues: [
+      posts: [
         {
           id: 0,
           title: 'Some title 1',
