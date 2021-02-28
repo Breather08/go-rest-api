@@ -32,7 +32,9 @@ export default {
   },
   methods: {
     emitPostData() {
-      this.$emit('updatePost', this.postData);
+      this.$emit('updatePost', { ...this.postData });
+      this.postData.title = '';
+      this.postData.content = '';
     },
   },
 };
