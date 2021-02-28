@@ -20,7 +20,7 @@ func main() {
 
 	router := router.Router()
 
-	fmt.Println("Starting server on port 7880...")
+	fmt.Println("Starting server on port 3000...")
 
-	log.Fatal(http.ListenAndServe(":7880", router))
+	log.Fatal(http.ListenAndServe(":3000", router))
 }

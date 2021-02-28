@@ -1,32 +1,56 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar app color="primary" dark> </v-app-bar>
+
+    <v-main>
+      <post-form @updatePost="addPost" />
+      <post v-for="post in posts" :key="post.title" :title="post.title" :content="post.content" />
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import axios from 'axios';
+import PostForm from './components/PostForm.vue';
+import Post from './components/Post.vue';
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+export default {
+  name: 'App',
+  components: {
+    PostForm,
+    Post,
+  },
+  data() {
+    return {
+      posts: [],
+    };
+  },
+  methods: {
+    addPost(data) {
+      axios
+        .post('http://localhost:3000/api/create-post', data, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        })
+        .then(() => {
+          this.posts = [...this.posts, data];
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    },
+  },
+  async created() {
+    await axios
+      .get('http://localhost:3000/api/posts', {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      })
+      .then((response) => {
+        this.posts = response.data ? response.data : [];
+      });
+  },
+};
+</script>
