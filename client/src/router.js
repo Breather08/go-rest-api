@@ -21,12 +21,12 @@ const router = new VueRouter({
           component: Posts,
         },
         {
-          path: '/profile',
+          path: '/profile/',
           name: 'profile',
           component: Profile,
         },
         {
-          path: '/about',
+          path: '/about/',
           name: 'about',
           component: About,
         },
