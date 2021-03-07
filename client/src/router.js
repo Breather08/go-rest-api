@@ -4,6 +4,8 @@ import Main from './pages/Main.vue';
 import Posts from './pages/Posts.vue';
 import Profile from './pages/Profile.vue';
 import About from './pages/About.vue';
+import Login from './pages/Login.vue';
+import SignUp from './pages/SignUp.vue';
 
 Vue.use(VueRouter);
 
@@ -19,6 +21,16 @@ const router = new VueRouter({
           path: '/',
           name: 'posts',
           component: Posts,
+        },
+        {
+          path: '/login/',
+          name: 'login',
+          component: Login,
+        },
+        {
+          path: '/signup/',
+          name: 'signup',
+          component: SignUp,
         },
         {
           path: '/profile/',

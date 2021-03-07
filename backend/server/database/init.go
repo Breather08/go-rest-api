@@ -29,12 +29,16 @@ func InitDB() {
 }
 
 func createTables() {
-	CreatePostTable()
+	CreatePostsTable()
+	CreateUsersTable()
 }
 
 func openDB() {
 	db, err = sql.Open("sqlite3", "./"+dbFileName)
 	if err != nil {
+		log.Fatal(err)
+	}
+	if err = db.Ping(); err != nil {
 		log.Fatal(err)
 	}
 }

@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func CreatePostTable() {
+func CreatePostsTable() {
 	postsTable, err := db.Prepare(postTableSQL)
 	if err != nil {
 		log.Fatal(err)
@@ -43,7 +43,7 @@ func insertPostIntoDB(postData models.Post) {
 }
 
 func InsertPost(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-Type", "application/x-www-form-urlencoded")
+	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.Header().Set("Access-Control-Allow-Methods", "POST")
 	w.Header().Set("Access-Control-Allow-Headers", "Content-Type")

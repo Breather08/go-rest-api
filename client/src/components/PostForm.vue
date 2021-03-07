@@ -5,7 +5,7 @@
       <v-row class="px-5">
         <v-col cols="5">
           <v-text-field v-model="postData.title" label="Title" outlined></v-text-field>
-          <v-text-field v-model="postData.content" label="Content" outlined></v-text-field>
+          <v-textarea v-model="postData.content" label="Content" outlined></v-textarea>
         </v-col>
       </v-row>
       <v-card-actions>

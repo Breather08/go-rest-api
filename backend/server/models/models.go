@@ -1,11 +1,16 @@
 package models
 
+import "time"
+
 // User model
 type User struct {
-	ID       int    `json:"id,string,omitempty"`
-	Username string `json:"username"`
-	Email    string `json:"email"`
-	Rating   int    `json:"rating"`
+	ID             int       `json:"id,string,omitempty"`
+	Username       string    `json:"username"`
+	Email          string    `json:"email"`
+	HashedPassword string    `json:"password"`
+	CreatedAt        time.Time `json:"created_at"`
+	Active         bool      `json:"active"`
+	Rating         int       `json:"rating"`
 }
 
 // Comment model
