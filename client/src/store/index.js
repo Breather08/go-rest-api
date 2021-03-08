@@ -12,6 +12,11 @@ export default new Vuex.Store({
       state.authorized = true;
     },
   },
+  getters: {
+    authState(state) {
+      return state.authorized;
+    },
+  },
   actions: {},
   modules: {},
 });

@@ -17,7 +17,6 @@
     <v-app-bar color="#495464" class="px-10" clipped-left fixed app>
       <v-img :src="mainIcon" max-width="200" position="bottom -20px left 10px"></v-img>
       <v-spacer />
-      {{ authorized }}
       <v-btn to="/login" outlined dark>
         <v-icon color="#f4f4f2" left>mdi-login</v-icon>
         {{ authorized ? 'Sign out' : 'Sign in' }}
@@ -38,7 +37,6 @@ export default {
   data() {
     return {
       mainIcon,
-      authorized: this.$store.state.authorized,
       navItems: [
         {
           icon: 'mdi-format-list-bulleted-square',
@@ -60,6 +58,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    authorized() {
+      return this.$store.getters.authState;
+    },
   },
 };
 </script>

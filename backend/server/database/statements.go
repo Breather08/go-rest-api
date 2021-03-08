@@ -1,5 +1,11 @@
 package database
 
+/*------------------------------------------------------*/
+/*                                                      */
+/*                    POST STATEMENTS                   */
+/*                                                      */
+/*------------------------------------------------------*/ 
+
 const postTableSQL = `
 	CREATE TABLE IF NOT EXISTS posts (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -13,7 +19,22 @@ const postTableSQL = `
 	);
 `
 
-// password --> hashed_password char(60)
+const insertPostSQL = `
+	INSERT INTO posts 
+		(author_id, username, title, content, created_at, likes, dislikes)
+		VALUES (?, ?, ?, ?, ?, 0, 0);
+`
+
+const getAllPostsSQL = `
+	SELECT * FROM posts
+`
+
+/*------------------------------------------------------*/ 
+/*                                                      */ 
+/*                    USER STATEMENTS                   */ 
+/*                                                      */ 
+/*------------------------------------------------------*/ 
+
 const userTableSQL = `
 	CREATE TABLE IF NOT EXISTS users (
 		id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -26,14 +47,13 @@ const userTableSQL = `
 	);
 `
 
-const insertPostSQL = `
-	INSERT INTO posts 
-		(author_id, username, title, content, created_at, likes, dislikes)
-		VALUES (?, ?, ?, ?, ?, 0, 0);
-`
-
 const insertUserSQL = `
 	INSERT INTO users 
 		(username, email, hashed_password, created_at, active, rating)
 		VALUES (?, ?, ?, ?, ?, 0);
+`
+
+const getUserSQL = `
+	SELECT id, hashed_password FROM users 
+		WHERE email = ? AND active = TRUE
 `

@@ -65,9 +65,7 @@ func InsertPost(w http.ResponseWriter, r *http.Request) {
 func getAllPosts() []models.Post {
 	var posts []models.Post
 
-	row, err := db.Query(`
-		SELECT * FROM posts
-	`)
+	row, err := db.Query(getAllPostsSQL)
 	if err != nil {
 		log.Fatal(err)
 	}

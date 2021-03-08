@@ -22,6 +22,7 @@ func Router() http.Handler {
 	mux.HandleFunc("/api/posts", database.SendAllPosts)
 	mux.HandleFunc("/api/create-post", database.InsertPost)
 	mux.HandleFunc("/api/auth/signup", database.InsertUser)
+	mux.HandleFunc("/api/auth/login", database.LoginUser)
 
 	return mux
 }
